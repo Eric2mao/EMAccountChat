@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5530266321C7676E00EC1E23 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5530266221C7676E00EC1E23 /* AppDelegate.m */; };
-		5530266621C7676E00EC1E23 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5530266521C7676E00EC1E23 /* ViewController.m */; };
+		5530266621C7676E00EC1E23 /* EMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5530266521C7676E00EC1E23 /* EMMainViewController.m */; };
 		5530266921C7676E00EC1E23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5530266721C7676E00EC1E23 /* Main.storyboard */; };
 		5530266B21C7676E00EC1E23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5530266A21C7676E00EC1E23 /* Assets.xcassets */; };
 		5530266E21C7676E00EC1E23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5530266C21C7676E00EC1E23 /* LaunchScreen.storyboard */; };
@@ -35,8 +35,8 @@
 		5530265E21C7676E00EC1E23 /* EMAccountChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMAccountChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5530266121C7676E00EC1E23 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5530266221C7676E00EC1E23 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5530266421C7676E00EC1E23 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5530266521C7676E00EC1E23 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5530266421C7676E00EC1E23 /* EMMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMMainViewController.h; sourceTree = "<group>"; };
+		5530266521C7676E00EC1E23 /* EMMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMMainViewController.m; sourceTree = "<group>"; };
 		5530266821C7676E00EC1E23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5530266A21C7676E00EC1E23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5530266D21C7676E00EC1E23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 			children = (
 				5530266121C7676E00EC1E23 /* AppDelegate.h */,
 				5530266221C7676E00EC1E23 /* AppDelegate.m */,
-				5530266421C7676E00EC1E23 /* ViewController.h */,
-				5530266521C7676E00EC1E23 /* ViewController.m */,
+				5530266421C7676E00EC1E23 /* EMMainViewController.h */,
+				5530266521C7676E00EC1E23 /* EMMainViewController.m */,
 				5530266721C7676E00EC1E23 /* Main.storyboard */,
 				5530266A21C7676E00EC1E23 /* Assets.xcassets */,
 				5530266C21C7676E00EC1E23 /* LaunchScreen.storyboard */,
@@ -276,7 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5530266621C7676E00EC1E23 /* ViewController.m in Sources */,
+				5530266621C7676E00EC1E23 /* EMMainViewController.m in Sources */,
 				5530267121C7676E00EC1E23 /* main.m in Sources */,
 				5530266321C7676E00EC1E23 /* AppDelegate.m in Sources */,
 			);
@@ -441,7 +441,10 @@
 				DEVELOPMENT_TEAM = KR2EUMCN3U;
 				INFOPLIST_FILE = EMAccountChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.EMAccountChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,7 +460,10 @@
 				DEVELOPMENT_TEAM = KR2EUMCN3U;
 				INFOPLIST_FILE = EMAccountChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.EMAccountChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -472,7 +478,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR2EUMCN3U;
 				INFOPLIST_FILE = EMAccountChatTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.EMAccountChatTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -488,7 +498,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KR2EUMCN3U;
 				INFOPLIST_FILE = EMAccountChatTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.EMAccountChatTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
