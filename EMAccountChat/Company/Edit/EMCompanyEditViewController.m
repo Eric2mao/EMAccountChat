@@ -8,11 +8,12 @@
 
 #import "EMCompanyEditViewController.h"
 #import "EMCompanyInfo.h"
+#import "EMTextEditViewController.h"
 
-@interface EMCompanyEditViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface EMCompanyEditViewController ()<UITableViewDataSource, UITableViewDelegate, EMTextEditViewControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, assign) BOOL needAdd;
 @end
 
 @implementation EMCompanyEditViewController
@@ -22,6 +23,10 @@
     self = [super init];
     if (self) {
         self.companyInfo = company;
+        if (company == nil) {
+            self.needAdd = YES;
+            self.companyInfo = [[EMCompanyInfo alloc] init];
+        }
     }
     
     return self;
@@ -55,20 +60,13 @@
 
 - (void)onComfirmButtonClicked:(id)sender
 {
-    if (self.companyInfo) {
-        self.companyInfo.name = @"Tencent";
-        self.companyInfo.city = @"shenzhen";
-        
-        if (self.delegate && [self.delegate respondsToSelector:@selector(onEditComfirmButtonClicked:)]) {
-            [self.delegate onEditComfirmButtonClicked:self];
-        }
-    } else {
-        self.companyInfo = [[EMCompanyInfo alloc] init];
-        self.companyInfo.name = @"Tencent";
-        self.companyInfo.city = @"shenzhen";
-        
+    if (self.needAdd) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(onAddCompanyButtonClicked:)]) {
             [self.delegate onAddCompanyButtonClicked:self];
+        }
+    } else {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(onEditComfirmButtonClicked:)]) {
+            [self.delegate onEditComfirmButtonClicked:self];
         }
     }
     
@@ -81,7 +79,6 @@
     tableView.dataSource = self;
     tableView.delegate = self;
     self.tableView = tableView;
-    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellID"];
     
     [self.view addSubview:tableView];
 }
@@ -100,16 +97,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cellID"];
+    }
+
     switch (indexPath.row) {
         case 0:
         {
             cell.textLabel.text = @"公司名";
-            cell.detailTextLabel.text = @"腾讯";
+            cell.detailTextLabel.text = self.companyInfo.name;
         }
             break;
             
         case 1:
+        {
             cell.textLabel.text = @"地点";
+            cell.detailTextLabel.text = self.companyInfo.city;
+        }
             break;
             
         default:
@@ -128,8 +132,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        
+        EMTextEditViewController *nameViewController = [[EMTextEditViewController alloc] initWithString:self.companyInfo.name];
+        nameViewController.delegate = self;
+        [self.navigationController pushViewController:nameViewController animated:YES];
     }
+}
+
+#pragma mark - EMTextEditViewControllerDelegate
+- (void)onEditTextComfirmButtonClicked:(EMTextEditViewController *)viewController string:(NSString *)string
+{
+    self.companyInfo.name = string;
+    [self.tableView reloadData];
 }
 
 @end
