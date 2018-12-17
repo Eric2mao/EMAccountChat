@@ -10,4 +10,19 @@
 
 @implementation EMCompanyInfo
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ %@", _name, _city];
+}
+
 @end

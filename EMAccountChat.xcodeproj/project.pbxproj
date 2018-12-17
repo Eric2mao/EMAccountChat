@@ -17,6 +17,7 @@
 		5530276D21C7DF5E00EC1E23 /* EMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5530276C21C7DF5E00EC1E23 /* EMBaseViewController.m */; };
 		5530277021C7DF8C00EC1E23 /* EMCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5530276F21C7DF8C00EC1E23 /* EMCompanyViewController.m */; };
 		5530277321C7E0F900EC1E23 /* EMCompanyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5530277221C7E0F900EC1E23 /* EMCompanyInfo.m */; };
+		5530277721C7E65500EC1E23 /* EMCompanyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5530277621C7E65500EC1E23 /* EMCompanyEditViewController.m */; };
 		598800245940FB2957C6F76A /* libPods-EMAccountChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC70F765C0604658BCD12349 /* libPods-EMAccountChatTests.a */; };
 		5FD9DEB8DEC1319625471E71 /* libPods-EMAccountChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA0FD1929C891FB1599A23A /* libPods-EMAccountChat.a */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,8 @@
 		5530276F21C7DF8C00EC1E23 /* EMCompanyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMCompanyViewController.m; sourceTree = "<group>"; };
 		5530277121C7E0F900EC1E23 /* EMCompanyInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMCompanyInfo.h; sourceTree = "<group>"; };
 		5530277221C7E0F900EC1E23 /* EMCompanyInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMCompanyInfo.m; sourceTree = "<group>"; };
+		5530277521C7E65500EC1E23 /* EMCompanyEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMCompanyEditViewController.h; sourceTree = "<group>"; };
+		5530277621C7E65500EC1E23 /* EMCompanyEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMCompanyEditViewController.m; sourceTree = "<group>"; };
 		BC70F765C0604658BCD12349 /* libPods-EMAccountChatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EMAccountChatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C19270784DC7182E900AC2EB /* Pods-EMAccountChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMAccountChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-EMAccountChat/Pods-EMAccountChat.release.xcconfig"; sourceTree = "<group>"; };
 		E0461FBFFD706AB007C3AF51 /* Pods-EMAccountChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMAccountChatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EMAccountChatTests/Pods-EMAccountChatTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 		5530277421C7E5BE00EC1E23 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
+				5530277521C7E65500EC1E23 /* EMCompanyEditViewController.h */,
+				5530277621C7E65500EC1E23 /* EMCompanyEditViewController.m */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				5530277021C7DF8C00EC1E23 /* EMCompanyViewController.m in Sources */,
 				5530276D21C7DF5E00EC1E23 /* EMBaseViewController.m in Sources */,
 				5530277321C7E0F900EC1E23 /* EMCompanyInfo.m in Sources */,
+				5530277721C7E65500EC1E23 /* EMCompanyEditViewController.m in Sources */,
 				5530267121C7676E00EC1E23 /* main.m in Sources */,
 				5530266321C7676E00EC1E23 /* AppDelegate.m in Sources */,
 			);

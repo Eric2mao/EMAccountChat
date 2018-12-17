@@ -1,29 +1,34 @@
 //
-//  EMCompanyViewController.m
+//  EMCompanyEditViewController.m
 //  EMAccountChat
 //
 //  Created by Mao Yuxi on 2018/12/17.
 //  Copyright © 2018年 Tencent. All rights reserved.
 //
 
-#import "EMCompanyViewController.h"
-#import "EMCompanyInfo.h"
 #import "EMCompanyEditViewController.h"
+#import "EMCompanyInfo.h"
 
-@interface EMCompanyViewController ()<UITableViewDataSource, UITableViewDelegate, EMCompanyEditViewControllerDelegate>
+@interface EMCompanyEditViewController ()<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray<EMCompanyInfo*> *companys;
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation EMCompanyViewController
+@implementation EMCompanyEditViewController
+
+- (instancetype)initWithCompanyInfo:(EMCompanyInfo *)company
+{
+    self = [super init];
+    if (self) {
+        self.companyInfo = company;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.companys = [NSMutableArray array];
-    
     [self setNavigation];
     
     [self createTableView];
@@ -31,27 +36,43 @@
 
 - (void)setNavigation
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_back_btn"]
+    self.title = @"添加/更新公司";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]  initWithTitle:@"取消"
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:self
                                                                             action:@selector(onNavigationBackButtonClicked:)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_add_bt"]
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确认"
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
-                                                                             action:@selector(onNavigationAddButtonClicked:)];
+                                                                             action:@selector(onComfirmButtonClicked:)];
 }
 
 - (void)onNavigationBackButtonClicked:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)onNavigationAddButtonClicked:(id)sender
+- (void)onComfirmButtonClicked:(id)sender
 {
-    EMCompanyEditViewController *editViewController = [[EMCompanyEditViewController alloc] initWithCompanyInfo:nil];
-    editViewController.delegate = self;
-    [self.navigationController pushViewController:editViewController animated:YES];
+    if (self.companyInfo) {
+        self.companyInfo.name = @"Tencent";
+        self.companyInfo.city = @"shenzhen";
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(onEditComfirmButtonClicked:)]) {
+            [self.delegate onEditComfirmButtonClicked:self];
+        }
+    } else {
+        self.companyInfo = [[EMCompanyInfo alloc] init];
+        self.companyInfo.name = @"Tencent";
+        self.companyInfo.city = @"shenzhen";
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(onAddCompanyButtonClicked:)]) {
+            [self.delegate onAddCompanyButtonClicked:self];
+        }
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)createTableView
@@ -73,14 +94,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _companys.count;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
-    EMCompanyInfo *company = _companys[[indexPath row]];
-    cell.textLabel.text = [company description];
+    switch (indexPath.row) {
+        case 0:
+        {
+            cell.textLabel.text = @"公司名";
+            cell.detailTextLabel.text = @"腾讯";
+        }
+            break;
+            
+        case 1:
+            cell.textLabel.text = @"地点";
+            break;
+            
+        default:
+            break;
+    }
     
     return cell;
 }
@@ -96,19 +130,6 @@
     if (indexPath.row == 0) {
         
     }
-}
-
-
-#pragma mark - EMCompanyEditViewControllerDelegate
-- (void)onEditComfirmButtonClicked:(EMCompanyEditViewController *)viewController
-{
-    [self.tableView reloadData];
-}
-
-- (void)onAddCompanyButtonClicked:(EMCompanyEditViewController *)viewController
-{
-    [self.companys addObject:viewController.companyInfo];
-    [self.tableView reloadData];
 }
 
 @end
