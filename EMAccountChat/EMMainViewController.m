@@ -7,6 +7,7 @@
 //
 
 #import "EMMainViewController.h"
+#import "EMCompanyViewController.h"
 
 @interface EMMainViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -64,7 +65,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.row == 0) {
+        EMCompanyViewController *companyViewController = [[EMCompanyViewController alloc] init];
+        companyViewController.title = @"公司";
+        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:companyViewController];
+        
+        [self presentViewController:navi
+                           animated:YES
+                         completion:nil];
+    }
 }
 
 @end
